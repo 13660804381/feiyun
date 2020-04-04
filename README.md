@@ -1,21 +1,27 @@
 # chatpc
 
-> chatpc
+> 飞云
 
-#### Build Setup
+#### 一款基于electron开发的桌面聊天应用
 
 ``` bash
-# install dependencies
-npm install
+# 如果你没有vue-cli的话需要全局安装
+npm install -g vue-cli
 
-# serve with hot reload at localhost:9080
-npm run dev
+# 然后使用vue-cli来安装electron-vue的模板
+vue init simulatedgreg/electron-vue my-project
 
-# build electron application for production
-npm run build
+# 安装依赖
+cd my-project
+npm install # or yarn
+
+# 进入开发模式
+npm run dev # or yarn run dev
 
 
 ```
+#### app是基于apicloud开发的，这里就提供下载地址
+![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
 
 ---
 
