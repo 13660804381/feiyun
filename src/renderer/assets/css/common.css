@@ -1,0 +1,126 @@
+html {
+  font-family: "Microsoft YaHei";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+table,
+td,
+img,
+div,
+dl,
+dt,
+dd,
+input,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  outline: none;
+}
+
+li {
+  list-style: none
+}
+
+img {
+  border: none;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  border: none;
+  outline: none;
+  background: none
+}
+
+em,
+i {
+  font-style: normal
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal
+}
+
+.el-popover {
+  background-color: #f5f5f5 !important;
+  padding: 0 !important;
+}
+
+.popper__arrow::after {
+  border-top-color: #f5f5f5 !important;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #999;
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+}
+.faceList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 345px;
+  height: 150px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  background-color: #fff;
+}
+.faceList .faceItem {
+  margin: 2px 5px;
+}
+.faceList .faceItem span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+.faceList .faceItem span:hover{
+  background-color: #e6e6e6;
+  transform: scale(1.2);
+}
+.faceList .faceItem span img {
+  width: 20px;
+  vertical-align: middle;
+}
