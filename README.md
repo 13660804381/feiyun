@@ -21,7 +21,7 @@ npm run dev # or yarn run dev
 
 ```
 #### app是基于apicloud开发的，这里就提供下载地址
-![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
+![Image text](https://raw.githubusercontent.com/13660804381/feiyun/master/img-folder/android.jpg)
 
 ---
 
