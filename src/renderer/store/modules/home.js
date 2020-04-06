@@ -117,6 +117,10 @@ export default {
 }
 
 function formatConversation(arr) {
+  let ids = [];
+  for(let i = 0; i < state.friendList.length; i++) {
+    ids.push(state.friendList[i].id);
+  }
   let conversationList = arr;
   let arr2 = []
   let obj = {}
@@ -124,8 +128,8 @@ function formatConversation(arr) {
   let verifyCount = 0;
   for (let i = 0; i < conversationList.length; i++) {
     if (conversationList[i].conversationType == 6) {
-      if (conversationList[i].objectName == 'RC:ContactNtf' && conversationList[i].latestMessage.content.operation == 'RC:FApply') {
-        verifyCount += conversationList[i].unreadMessageCount;
+      if (conversationList[i].objectName == 'RC:ContactNtf' && conversationList[i].latestMessage.content.operation == 'RC:FApply' && !ids.includes(conversationList[i].latestMessage.senderUserId)) {
+        verifyCount += 1;
       }
     }
     if (conversationList[i].conversationType == 1 || conversationList[i].conversationType == 3) {

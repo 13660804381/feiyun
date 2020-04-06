@@ -7,9 +7,7 @@
           <div class="left_box">
             <img :src="item.headImgUrl" alt />
             <div class="right_info">
-              <span class="name">
-                {{item.nickName}}
-              </span>
+              <span class="name">{{item.nickName}}</span>
               <span class="add_message">{{item.message?item.message:'请求添加为好友'}}</span>
               <span class="id">来源：ID查找</span>
             </div>
@@ -55,50 +53,31 @@ export default {
           if (res) {
             this.getList();
             this.$store.dispatch("getFriendList");
-            var conversationType = RongIMLib.ConversationType.SYSTEM;
             var targetId = item.userId;
-            RongIMClient.getInstance().clearUnreadCount(
+            let extraObj = {
+              name1: JSON.parse(window.localStorage.getItem("userInfo"))
+                .nickName,
+              avatar1: window.localStorage.getItem("defaultAvatar"),
+              name2: item.nickName,
+              avatar2: item.headImgUrl
+            };
+            var msg = new RongIMLib.TextMessage({
+              content: "我们已经是好友了，开始聊天吧！",
+              extra: JSON.stringify(extraObj)
+            });
+            var conversationType = RongIMLib.ConversationType.PRIVATE;
+            RongIMClient.getInstance().sendMessage(
               conversationType,
               targetId,
+              msg,
               {
-                onSuccess: () => {
-                  console.log("清除指定会话未读消息数成功");
-                  // 阻止默认换行
-                  // if (e.preventDefault) e.preventDefault();
-                  // else window.event.value = false;
-                  let extraObj = {
-                    name1: JSON.parse(window.localStorage.getItem("userInfo"))
-                      .nickName,
-                    avatar1: window.localStorage.getItem("defaultAvatar"),
-                    name2: item.nickName,
-                    avatar2: item.headImgUrl
-                  };
-                  var msg = new RongIMLib.TextMessage({
-                    content: "我们已经是好友了，开始聊天吧！",
-                    extra: JSON.stringify(extraObj)
-                  });
-                  var conversationType = RongIMLib.ConversationType.PRIVATE;
-                  RongIMClient.getInstance().sendMessage(
-                    conversationType,
-                    targetId,
-                    msg,
-                    {
-                      onSuccess: message => {
-                        console.log("发送消息成功, 用户信息为: ", message);
-                        var reg = /\[.+?\]/g;
-                        message.content.extra = JSON.parse(
-                          message.content.extra
-                        );
-                        this.getConversationList();
-                      },
-                      onError: function(errorCode) {
-                        console.log("发送消息失败", errorCode);
-                      }
-                    }
-                  );
+                onSuccess: message => {
+                  var reg = /\[.+?\]/g;
+                  message.content.extra = JSON.parse(message.content.extra);
+                  this.getConversationList();
                 },
-                onError: function(error) {
-                  console.log("清除指定会话未读消息数失败", error);
+                onError: function(errorCode) {
+                  console.log("发送消息失败", errorCode);
                 }
               }
             );
@@ -110,20 +89,6 @@ export default {
       refuse({ userId: id }).then(res => {
         if (res) {
           this.getList();
-          var conversationType = RongIMLib.ConversationType.SYSTEM;
-          var targetId = id;
-          RongIMClient.getInstance().clearUnreadCount(
-            conversationType,
-            targetId,
-            {
-              onSuccess: function() {
-                console.log("清除指定会话未读消息数成功");
-              },
-              onError: function(error) {
-                console.log("清除指定会话未读消息数失败", error);
-              }
-            }
-          );
         }
       });
     },

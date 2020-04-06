@@ -12,6 +12,7 @@
         </li>
         <li :class="{'active': tabStatus == 2}" @click="selectTab(2)">
           <img src="@/assets/image/address-book.png" alt />
+          <span class="bradge" v-if="verifyCount">{{verifyCount}}</span>
         </li>
         <li :class="{'active': tabStatus == 3}" @click="selectTab(3)">
           <img src="@/assets/image/people.png" alt />

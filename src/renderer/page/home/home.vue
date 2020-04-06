@@ -300,7 +300,6 @@ export default {
       RongIMClient.getInstance().getConversationList(
         {
           onSuccess: list => {
-            console.table(list);
             let conversationList = list;
             this.$store.dispatch("getConversation", conversationList);
           },
